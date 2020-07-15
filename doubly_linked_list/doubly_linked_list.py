@@ -147,12 +147,13 @@ class DoublyLinkedList:
     order of the other elements of the List.
     """
     def delete(self, node):
-        # set the length of the list to minus 1
-        self.length -= 1
 
         # if there is no head or tail, return out of the function
         if not self.head and not self.tail:
             return
+
+        # set the length of the list to minus 1
+        self.length -= 1
 
         # if the head and tail are the same, we only have one node
         # remove it's references and it will be deleted.

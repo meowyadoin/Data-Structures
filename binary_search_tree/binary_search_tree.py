@@ -1,3 +1,5 @@
+from collections import deque
+import sys
 """
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
@@ -9,6 +11,8 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -71,22 +75,50 @@ class BSTNode:
 
 
     # Part 2 -----------------------
+    from collections import deque
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node.left:
+            node.left.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            node.right.in_order_print(node.right)
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # bft you need to create a que
+        queue = self.deque()
+        queue.append(node)
+        # need to create a node in a que
+        while len(queue) > 0:
+            # if queue is not empty then run loop
+            current = queue.popleft()
+            print(current.value)
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # dft you need to create a stack--
+        # stack as empty array
+        stack = []
+        stack.append(node)
 
+        while len(stack) > 0:
+            current = stack.pop()
+
+            if current.right:
+                stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
+            print(current.value)
     # Stretch Goals -------------------------
     # Note: Research may be required
 
